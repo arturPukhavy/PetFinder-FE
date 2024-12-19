@@ -1,0 +1,64 @@
+<div class="pet-finder-container">
+    <h1 class="title">🐾 Pet Finder</h1>
+  
+    <!-- Input Section -->
+    <div class="input-section">
+      <div class="input-wrapper">
+        <input
+          id="pet-code-input"
+          type="text"
+          [(ngModel)]="petCode"
+          placeholder="Enter Pet Code"
+          (keyup.enter)="fetchPetInfo()"
+        />
+        <button (click)="fetchPetInfo()" class="primary-button">Search</button>
+      </div>
+    </div>
+  
+    <!-- QR Scanner Section -->
+    <div class="qr-section">
+      <button class="secondary-button" (click)="openScanner()">📷 Scan Pet Code</button>
+      <div *ngIf="scannedCode" class="scanned-code-section">
+        <h2>Scanned Pet Code: <span>{{ scannedCode }}</span></h2>
+        <button (click)="fetchPetInfo(scannedCode)" class="primary-button">Get Info</button>
+      </div>
+    </div>
+  
+    <!-- Pet Info Section -->
+    <div  class="pet-info">
+      <h2>🐶 Pet Information</h2>
+      <div class="info-item">
+        <span class="info-label">ID Number:</span> 123
+      </div>
+      <div class="info-item">
+        <span class="info-label">Name:</span> name
+      </div>
+      <div class="info-item">
+        <span class="info-label">Breed:</span> breed
+      </div>
+      <div class="info-item">
+        <span class="info-label">Passport registered?:</span> no
+      </div>
+      <div class="info-item">
+        <span class="info-label">Age:</span> age
+      </div>
+      <div class="info-item">
+        <span class="info-label">City:</span> delft
+      </div>
+      <div class="info-item">
+        <span class="info-label">Country:</span> NL
+      </div>
+      <div class="info-item">
+        <span class="info-label">Telephone (from the Netherlands):</span> 325235
+      </div>
+      <div class="info-item">
+        <span class="info-label">Telephone (from outside):</span> 45765
+      </div>
+      <div class="info-item">
+        <span class="info-label">Missing?:</span> no
+      </div>
+      <div class="info-item">
+        <span class="info-label">Dead?:</span> no
+      </div>
+    </div>
+  </div>

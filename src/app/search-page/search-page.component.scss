@@ -1,0 +1,184 @@
+.pet-finder-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff, #eafaf1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+  
+    .title {
+      font-size: 2.5rem;
+      color: #4caf50;
+      margin-bottom: 1.5rem;
+      font-family: 'Poppins', sans-serif;
+    }
+  
+    .input-section {
+      margin-bottom: 2rem;
+      text-align: left;
+  
+      .input-label {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        color: #555;
+        font-weight: 600;
+      }
+  
+      .input-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+  
+        input {
+          flex: 1;
+          padding: 0.8rem;
+          border: 2px solid #ddd;
+          border-radius: 8px;
+          font-size: 1rem;
+          margin-right: 0.5rem;
+          transition: border-color 0.3s;
+  
+          &:focus {
+            border-color: #4caf50;
+            outline: none;
+          }
+        }
+  
+        .primary-button {
+          padding: 0.8rem 1.5rem;
+          font-size: 1rem;
+          background-color: #4caf50;
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+  
+          &:hover {
+            background-color: #43a047;
+          }
+        }
+      }
+    }
+  
+    .qr-section {
+      margin-bottom: 2rem;
+  
+      .secondary-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        background-color: #2196f3;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 1rem;
+  
+        &:hover {
+          background-color: #1976d2;
+        }
+      }
+  
+      .scanned-code-section {
+        margin-top: 1rem;
+        text-align: left;
+  
+        h2 {
+          font-size: 1.2rem;
+          color: #333;
+  
+          span {
+            color: #2196f3;
+            font-weight: bold;
+          }
+        }
+  
+        .primary-button {
+          margin-top: 0.5rem;
+          padding: 0.6rem 1rem;
+          font-size: 0.9rem;
+          background-color: #4caf50;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+  
+          &:hover {
+            background-color: #43a047;
+          }
+        }
+      }
+    }
+  
+    .pet-info {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      background-color: #f1f8e9;
+      text-align: left;
+  
+      h2 {
+        font-size: 1.5rem;
+        color: #4caf50;
+        margin-bottom: 1rem;
+      }
+  
+      .info-item {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+  
+        .info-label {
+          font-weight: bold;
+          margin-right: 0.5rem;
+          color: #555;
+        }
+      }
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .pet-finder-container {
+      padding: 1.5rem;
+      width: 80%;
+    }
+  
+    .title {
+      font-size: 2rem;
+    }
+  
+    .input-section .input-wrapper {
+      flex-direction: column;
+      align-items: center;
+  
+      input {
+        margin-bottom: 1rem;
+        width: 80%;
+      }
+  
+      .primary-button {
+        width: 80%;
+      }
+    }
+  
+    .qr-section .secondary-button {
+      width: 80%;
+    }
+  
+    .qr-section .scanned-code-section h2 {
+      font-size: 1rem;
+    }
+  
+    .pet-info h2 {
+      font-size: 1.3rem;
+    }
+  
+    .pet-info .info-item {
+      font-size: 0.9rem;
+    }
+  }

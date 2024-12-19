@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PetFinder</string>
+    <string name="title_activity_main">PetFinder</string>
+    <string name="package_name">com.petfinder</string>
+    <string name="custom_url_scheme">com.petfinder</string>
+</resources>
