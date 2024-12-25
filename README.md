@@ -1,13 +1,14 @@
 # PetFinder
 <img src="../PetFinder-BE/img/under_construction.jpg" width="15%">
 App for searching registered pets by identification number. 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## API Specification
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+[Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.](https://app.swaggerhub.com/apis/ARTURPUHICE_1/Pet_Finder_API/1.0.0#/default/getPetInfo)
 
 ## Build
 
