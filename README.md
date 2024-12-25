@@ -1,5 +1,5 @@
 # PetFinder
-<img src="img/under_construction.jpg" width="15%">
+<img src="../PetFinder-BE/img/under_construction.jpg" width="15%">
 App for searching registered pets by identification number. 
 ## Development server
 
