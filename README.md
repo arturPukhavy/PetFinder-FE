@@ -1,14 +1,23 @@
 # PetFinder
-<img src="../PetFinder-BE/img/under_construction.jpg" width="15%">
+
 App for searching registered pets by identification number. 
+
+## Angular Features Used
+* Standalone Components
+* HTTP Client
+* Observable
+* Services
+* Dependency injection
+* Models
+
+## API Specification
+
+https://app.swaggerhub.com/apis/ARTURPUHICE_1/Pet_Finder_API/1.0.0#/default/getPetInfo
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## API Specification
-
-https://app.swaggerhub.com/apis/ARTURPUHICE_1/Pet_Finder_API/1.0.0#/default/getPetInfo
 
 ## Build
 
