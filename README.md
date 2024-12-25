@@ -3,6 +3,8 @@
 App for searching registered pets by identification number. 
 
 ## Angular Features Used
+* Capacitor
+* Ionic
 * Standalone Components
 * HTTP Client
 * Observable
