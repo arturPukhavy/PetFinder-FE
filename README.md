@@ -1,7 +1,8 @@
 # PetFinder
 
 App for searching registered pets by identification number. 
-![0001screenshot](https://github.com/user-attachments/assets/ec81bd75-9ae7-4105-80a6-5a4124e71f88)
+
+<img src="https://github.com/user-attachments/assets/ec81bd75-9ae7-4105-80a6-5a4124e71f88" alt="Screenshot" width="300"/>
 
 ## Angular Features Used
 * Capacitor
