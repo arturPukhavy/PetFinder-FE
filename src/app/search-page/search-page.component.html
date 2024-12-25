@@ -10,8 +10,16 @@
           [(ngModel)]="petCode"
           placeholder="Enter Pet Code"
           (keyup.enter)="fetchPetInfo()"
+          minlength="15"
+          maxlength="15" 
+          pattern="^[0-9]*" 
+          #petCodeInput="ngModel"  
         />
-        <button (click)="fetchPetInfo()" class="primary-button">Search</button>
+        <button (click)="fetchPetInfo()" class="primary-button" [disabled]="petCodeInput.invalid || petCode.length !== 15">Search</button>
+      </div>
+      <div class="validation-message">
+        <small *ngIf="petCodeInput.errors?.['pattern']"> Only numbers are allowed. </small>
+        <small *ngIf="petCodeInput.errors?.['minlength'] && petCodeInput.touched"> Minimum 15 digits required. </small>
       </div>
     </div>
   
@@ -20,45 +28,53 @@
       <button class="secondary-button" (click)="openScanner()">📷 Scan Pet Code</button>
       <div *ngIf="scannedCode" class="scanned-code-section">
         <h2>Scanned Pet Code: <span>{{ scannedCode }}</span></h2>
-        <button (click)="fetchPetInfo(scannedCode)" class="primary-button">Get Info</button>
+        <button (click)="fetchPetInfo()" class="primary-button">Get Info</button>
       </div>
     </div>
+
+    <ngx-spinner>
+      <p>Loading...</p>
+    </ngx-spinner>
   
     <!-- Pet Info Section -->
-    <div  class="pet-info">
+    <div  class="pet-info" *ngIf="petInfo">
       <h2>🐶 Pet Information</h2>
       <div class="info-item">
-        <span class="info-label">ID Number:</span> 123
+        <span class="info-label">ID Number:</span> {{ petInfo.zoekresultaat.Identificatienummer }}
       </div>
       <div class="info-item">
-        <span class="info-label">Name:</span> name
+        <span class="info-label">Name:</span> {{ petInfo.zoekresultaat.Diernaam }}
       </div>
       <div class="info-item">
-        <span class="info-label">Breed:</span> breed
+        <span class="info-label">Breed:</span> {{ petInfo.zoekresultaat.Diersoort }}
       </div>
       <div class="info-item">
-        <span class="info-label">Passport registered?:</span> no
+        <span class="info-label">Passport registered?:</span> {{ petInfo.zoekresultaat.Paspoort_geregistreerd }}
       </div>
       <div class="info-item">
         <span class="info-label">Age:</span> age
       </div>
       <div class="info-item">
-        <span class="info-label">City:</span> delft
+        <span class="info-label">City:</span> {{ petInfo.zoekresultaat.Woonplaats_houder }}
       </div>
       <div class="info-item">
-        <span class="info-label">Country:</span> NL
+        <span class="info-label">Country:</span> {{ petInfo.zoekresultaat.Land_houder }}
       </div>
       <div class="info-item">
-        <span class="info-label">Telephone (from the Netherlands):</span> 325235
+        <span class="info-label">Telephone (from the Netherlands):</span> {{ petInfo.zoekresultaat.Telefoon_Nederland }}
       </div>
       <div class="info-item">
-        <span class="info-label">Telephone (from outside):</span> 45765
+        <span class="info-label">Telephone (from outside):</span> {{ petInfo.zoekresultaat.Telefoon_buitenland }}
       </div>
       <div class="info-item">
-        <span class="info-label">Missing?:</span> no
+        <span class="info-label">Missing?:</span> {{ petInfo.zoekresultaat.Vermist }}
       </div>
       <div class="info-item">
-        <span class="info-label">Dead?:</span> no
+        <span class="info-label">Dead?:</span> {{ petInfo.zoekresultaat.Overleden }}
       </div>
     </div>
   </div>
+
+  <!-- <div *ngIf="!petInfo">
+    <p>No pet information available.</p>
+  </div> -->
