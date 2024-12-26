@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PetResponse } from './pet.model';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-search-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgxSpinnerModule],
+  imports: [CommonModule, FormsModule, NgxSpinnerModule, IonicModule],
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss'
 })
