@@ -141,6 +141,11 @@
     color: #ffffff; // White text color
     font-size: 1.2rem; // Adjust font size
     font-weight: bold; // Make text bold
+    position: fixed; // Fix the position of the spinner
+  top: 50%; // Center it vertically
+  left: 50%; // Center it horizontally
+  transform: translate(-50%, -50%); // Adjust position to truly center
+  z-index: 9999; // Ensure it stays above other elements
   }
 
   .pet-info {
