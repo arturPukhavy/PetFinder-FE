@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { PetResponse } from "./pet.model";
 
 @Injectable({
@@ -12,6 +12,12 @@ import { PetResponse } from "./pet.model";
     constructor(private http: HttpClient) {}
   
     getPetInfo(code: string): Observable<PetResponse> {
-      return this.http.get<PetResponse>(`${this.apiUrl}/${code}`);
+      return this.http.get<PetResponse>(`${this.apiUrl}/${code}`).pipe(
+        catchError(this.handleError)
+      );
+    }
+
+    private handleError(error: HttpErrorResponse) {
+      return throwError(error);
     }
   }
