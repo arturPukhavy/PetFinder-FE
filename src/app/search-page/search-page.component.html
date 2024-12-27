@@ -77,6 +77,10 @@
         <span class="info-label">Dead?:</span> {{ petInfo.zoekresultaat.Overleden }}
       </div>
     </div>
+
+    <div *ngIf="message" class="message">
+      <p>{{ message }}</p>
+    </div>
   </div>
 
   <!-- <div *ngIf="!petInfo">
