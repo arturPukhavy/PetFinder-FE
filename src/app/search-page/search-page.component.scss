@@ -1,4 +1,5 @@
 .pet-finder-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 2rem auto;
@@ -11,6 +12,72 @@
 
   .message{
     font-size: 18px;
+  }
+
+  .language-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 1rem; 
+    z-index: 1; 
+  
+    .language-label {
+      margin-right: 0.5rem;
+    }
+  
+    select {
+      padding: 0.5rem;
+     
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        border-color: #4caf50;
+      }
+  
+      &:focus {
+        outline: none;
+        border-color: #4caf50;
+        box-shadow: 0 0 4px rgba(76, 175, 80, 0.6);
+      }
+    }
+  }
+
+  .disclaimer {
+    background-color: #cff4fc;
+    color: #333;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .disclaimer h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    color: #2f2f4f;
+  }
+  
+  .disclaimer p {
+    font-size: 16px;
+    margin: 5px 0;
+    color:#2f2f4f;
+  }
+  
+  .disclaimer a {
+    color: #2f2f4f;
+    text-decoration: underline;
+  }
+  
+  .disclaimer a:hover {
+    color: #1b1b2e; /* Change color on hover */
   }
 
   .title {
@@ -73,7 +140,7 @@
 
       .validation-message {
           color: #f44336; /* Red for error messages */
-          font-size: 0.9rem;
+          font-size: 1.1rem;
           margin-top: 0.5rem;
           text-align: left; /* Align messages to the left */
       }
@@ -147,10 +214,10 @@
     font-size: 1.2rem; // Adjust font size
     font-weight: bold; // Make text bold
     position: fixed; // Fix the position of the spinner
-  top: 50%; // Center it vertically
-  left: 50%; // Center it horizontally
-  transform: translate(-50%, -50%); // Adjust position to truly center
-  z-index: 9999; // Ensure it stays above other elements
+    top: 50%; // Center it vertically
+    left: 50%; // Center it horizontally
+    transform: translate(-50%, -50%); // Adjust position to truly center
+    z-index: 9999; // Ensure it stays above other elements
   }
 
   .pet-info {
@@ -186,6 +253,16 @@
   .pet-finder-container {
       padding: 1.5rem;
       width: 80%;
+  }
+
+  .language-selector {
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    select {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+    }
   }
 
   .title {

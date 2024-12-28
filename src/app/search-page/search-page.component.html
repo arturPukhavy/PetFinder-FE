@@ -1,88 +1,103 @@
 <div class="pet-finder-container">
-    <h1 class="title">🐾 Pet Finder</h1>
-  
-    <!-- Input Section -->
-    <div class="input-section">
-      <div class="input-wrapper">
-        <input
-          id="pet-code-input"
-          type="text"
-          [(ngModel)]="petCode"
-          placeholder="Enter Pet Code"
-          (keyup.enter)="fetchPetInfo()"
-          minlength="15"
-          maxlength="15" 
-          pattern="^[0-9]*" 
-          #petCodeInput="ngModel"  
-        />
-        <button (click)="fetchPetInfo()" class="primary-button" [disabled]="petCodeInput.invalid || petCode.length !== 15">Search</button>
-      </div>
-      <div class="validation-message">
-        <small *ngIf="petCodeInput.errors?.['pattern']"> Only numbers are allowed. </small>
-        <small *ngIf="petCodeInput.errors?.['minlength'] && petCodeInput.touched"> Minimum 15 digits required. </small>
-      </div>
-    </div>
-  
-    <!-- QR Scanner Section -->
-    <div class="qr-section">
-      <button class="secondary-button" (click)="openScanner()">📷 Scan Pet Code</button>
-      <div *ngIf="scannedCode" class="scanned-code-section">
-        <h2>Scanned Pet Code: <span>{{ scannedCode }}</span></h2>
-        <button (click)="fetchPetInfo()" class="primary-button">Get Info</button>
-      </div>
-    </div>
+  <div class="language-selector">
+    <label for="language-select" class="language-label">🌐:</label>
+    <select
+      id="language-select"
+      [(ngModel)]="selectedLanguage"
+      (change)="changeLanguage()"
+    >
+      <option value="en">EN</option>
+      <option value="nl">NL</option>
+    </select>
+  </div>
 
-    <ngx-spinner
+  <div class="disclaimer" *ngIf="!isNative">
+    <h3>Disclaimer</h3>
+    <p>{{ currentTranslations.disclaimer }} <a href="https://www.linkedin.com/in/artur-pukhavoi-7b104b302" target="_blank">Artur Pukhavoi.</a></p>
+    <p>{{ currentTranslations.disclaimerDetails }} <a href="https://github.com/arturPukhavy/PetFinder-FE" target="_blank">GitHub Repository</a>.</p>
+  </div>
+
+  <h1 class="title">{{ currentTranslations.title }}</h1>
+
+  <!-- Input Section -->
+  <div class="input-section">
+    <div class="input-wrapper">
+      <input
+        id="pet-code-input"
+        type="text"
+        [(ngModel)]="petCode"
+        [placeholder]="currentTranslations.searchPlaceholder"
+        (keyup.enter)="fetchPetInfo()"
+        minlength="15"
+        maxlength="15"
+        pattern="^[0-9]*"
+        #petCodeInput="ngModel"
+      />
+      <button (click)="fetchPetInfo()" class="primary-button" [disabled]="petCodeInput.invalid || petCode.length !== 15">
+        {{ currentTranslations.searchButton }}
+      </button>
+    </div>
+    <div class="validation-message">
+      <small *ngIf="petCodeInput.errors?.['pattern']"> {{currentTranslations.errorNumbers}} </small>
+      <small *ngIf="petCodeInput.errors?.['minlength'] && petCodeInput.touched"> {{currentTranslations.errorMin}} </small>
+    </div>
+  </div>
+
+  <div class="qr-section">
+    <button class="secondary-button" (click)="openScanner()">{{ currentTranslations.scanButton }}</button>
+    <div *ngIf="scannedCode" class="scanned-code-section">
+      <h2>Scanned Pet Code: <span>{{ scannedCode }}</span></h2>
+      <button (click)="fetchPetInfo()" class="primary-button">{{ currentTranslations.searchButton }}</button>
+    </div>
+  </div>
+
+  <ngx-spinner
     bdColor="rgba(51, 51, 51, 0.8)"
     size="large"
     color="#fff"
     type="ball-scale-multiple">
-      <p>Loading...</p>
-    </ngx-spinner>
-  
-    <!-- Pet Info Section -->
-    <div  class="pet-info" *ngIf="petInfo">
-      <h2>🐶 Pet Information</h2>
-      <div class="info-item">
-        <span class="info-label">ID Number:</span> {{ petInfo.zoekresultaat.Identificatienummer }}
-      </div>
-      <div class="info-item">
-        <span class="info-label">Name:</span> {{ petInfo.zoekresultaat.Diernaam }}
-      </div>
-      <div class="info-item">
-        <span class="info-label">Breed:</span> {{ petInfo.zoekresultaat.Diersoort }}
-      </div>
-      <div class="info-item">
-        <span class="info-label">Passport registered?:</span> {{ petInfo.zoekresultaat.Paspoort_geregistreerd }}
-      </div>
-      <div class="info-item">
-        <span class="info-label">Age:</span> age
-      </div>
-      <div class="info-item">
-        <span class="info-label">City:</span> {{ petInfo.zoekresultaat.Woonplaats_houder }}
-      </div>
-      <div class="info-item">
-        <span class="info-label">Country:</span> {{ petInfo.zoekresultaat.Land_houder }}
-      </div>
-      <div class="info-item">
-        <span class="info-label">Telephone (from the Netherlands):</span> {{ petInfo.zoekresultaat.Telefoon_Nederland }}
-      </div>
-      <div class="info-item">
-        <span class="info-label">Telephone (from outside):</span> {{ petInfo.zoekresultaat.Telefoon_buitenland }}
-      </div>
-      <div class="info-item">
-        <span class="info-label">Missing?:</span> {{ petInfo.zoekresultaat.Vermist }}
-      </div>
-      <div class="info-item">
-        <span class="info-label">Dead?:</span> {{ petInfo.zoekresultaat.Overleden }}
-      </div>
-    </div>
+    <p>{{currentTranslations.spinner}}...</p>
+  </ngx-spinner>
 
-    <div *ngIf="message" class="message">
-      <p>{{ message }}</p>
+  <!-- Pet Info Section -->
+  <div class="pet-info" *ngIf="petInfo">
+    <h2>{{ currentTranslations.petInfoTitle }}</h2>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.idNumber }}</span> {{ petInfo.zoekresultaat.Identificatienummer }}
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.name }}</span> {{ petInfo.zoekresultaat.Diernaam }}
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.breed }}</span> {{ petInfo.zoekresultaat.Diersoort }}
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.passportRegistered }}</span> {{ petInfo.zoekresultaat.Paspoort_geregistreerd }}
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.age }}</span> age
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.city }}</span> {{ petInfo.zoekresultaat.Woonplaats_houder }}
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.country }}</span> {{ petInfo.zoekresultaat.Land_houder }}
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.phoneNL }}</span> {{ petInfo.zoekresultaat.Telefoon_Nederland }}
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.phoneOutside }}</span> {{ petInfo.zoekresultaat.Telefoon_buitenland }}
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.missing }}</span> {{ petInfo.zoekresultaat.Vermist }}
+    </div>
+    <div class="info-item">
+      <span class="info-label">{{ currentTranslations.dead }}</span> {{ petInfo.zoekresultaat.Overleden }}
     </div>
   </div>
 
-  <!-- <div *ngIf="!petInfo">
-    <p>No pet information available.</p>
-  </div> -->
+  <div *ngIf="message" class="message">
+    <p>{{ message || currentTranslations.errorMessage }}</p>
+  </div>
+</div>
