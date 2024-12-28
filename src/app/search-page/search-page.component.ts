@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { PetService } from './pet.service';
+import { PetService } from '../core/pet.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { PetResponse } from './pet.model';
+import { PetResponse } from '../core/pet.model';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, Platform } from '@ionic/angular';
+import { translations } from '../core/translations';
+
+type Language = 'en' | 'nl';
 
 @Component({
   selector: 'app-search-page',
@@ -13,13 +16,21 @@ import { IonicModule } from '@ionic/angular';
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss'
 })
+
+
+
 export class SearchPageComponent {
   petCode: string = '';
   scannedCode: string | null = null;
   petInfo: PetResponse | null = null;
   message: string | null = null
+  isNative: boolean;
+  selectedLanguage: Language = 'en';
+  currentTranslations = translations.en;
 
-  constructor(private petService: PetService, private spinner: NgxSpinnerService) {}
+  constructor(private petService: PetService, private spinner: NgxSpinnerService, private platform: Platform) {
+    this.isNative = this.platform.is('capacitor');
+  }
 
   fetchPetInfo() {
     const code = this.petCode.trim();
@@ -52,6 +63,10 @@ export class SearchPageComponent {
         this.petInfo = null;
       }
     );
+  }
+
+  changeLanguage() {
+    this.currentTranslations = translations[this.selectedLanguage];
   }
 
   openScanner() {
