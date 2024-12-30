@@ -2,7 +2,8 @@ export const translations = {
     en: {
       title: "🐾 Pet Finder",
       disclaimer: "This application is a Proof of Concept (POC) created as part of a startup initiative by",
-      disclaimerDetails: "It is available in both desktop and mobile versions. The current version may not represent a fully functional or final product and is intended for demonstration purposes only. For more details, please visit the GitHub repository:",
+      disclaimerDetails: "It is available in both desktop and mobile versions. The current version may not represent a fully functional or final product and is intended for demonstration purposes only.",
+      discGit: "For more details, please visit the GitHub repository:",
       searchPlaceholder: "Enter Pet Code",
       searchButton: "Search",
       scanButton: "📷 Scan Pet Code",
@@ -26,7 +27,8 @@ export const translations = {
     nl: {
       title: "🐾 Huisdieren Zoeker",
       disclaimer: "Deze applicatie is een Proof of Concept (POC) gemaakt als onderdeel van een startup-initiatief van",
-      disclaimerDetails: "Het is beschikbaar in zowel desktop- als mobiele versies. De huidige versie vertegenwoordigt mogelijk geen volledig functioneel eindproduct en is uitsluitend bedoeld voor demonstratiedoeleinden. Bezoek de GitHub-repository voor meer details:",
+      disclaimerDetails: "Het is beschikbaar in zowel desktop- als mobiele versies. De huidige versie vertegenwoordigt mogelijk geen volledig functioneel eindproduct en is uitsluitend bedoeld voor demonstratiedoeleinden.",
+      discGit: "Bezoek de GitHub-repository voor meer details:",
       searchPlaceholder: "Voer huisdiercode in",
       searchButton: "Zoeken",
       scanButton: "📷 Scan huisdiercode",
