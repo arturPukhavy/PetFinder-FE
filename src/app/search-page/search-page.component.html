@@ -1,3 +1,12 @@
+<div class="disclaimer" *ngIf="!isNative">
+  <h3><strong>Disclaimer</strong></h3>
+  <p>{{ currentTranslations.disclaimer }} <a href="https://www.linkedin.com/in/artur-pukhavoi-7b104b302" target="_blank">Artur Pukhavoi.</a></p>
+  <br>
+  <p>{{ currentTranslations.disclaimerDetails }}</p>
+  <br>
+  <p>{{currentTranslations.discGit}} <a href="https://github.com/arturPukhavy/PetFinder-FE" target="_blank">GitHub Repository</a></p>
+</div>
+
 <div class="pet-finder-container">
   <div class="language-selector">
     <label for="language-select" class="language-label">🌐:</label>
@@ -9,12 +18,6 @@
       <option value="en">EN</option>
       <option value="nl">NL</option>
     </select>
-  </div>
-
-  <div class="disclaimer" *ngIf="!isNative">
-    <h3>Disclaimer</h3>
-    <p>{{ currentTranslations.disclaimer }} <a href="https://www.linkedin.com/in/artur-pukhavoi-7b104b302" target="_blank">Artur Pukhavoi.</a></p>
-    <p>{{ currentTranslations.disclaimerDetails }} <a href="https://github.com/arturPukhavy/PetFinder-FE" target="_blank">GitHub Repository</a>.</p>
   </div>
 
   <h1 class="title">{{ currentTranslations.title }}</h1>
