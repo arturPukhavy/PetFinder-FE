@@ -47,7 +47,12 @@
   </div>
 
   <div class="qr-section">
-    <button class="secondary-button" (click)="openScanner()">{{ currentTranslations.scanButton }}</button>
+    <button 
+      class="secondary-button" 
+      [disabled]="!isNative"
+      [class.disabled]="!isNative" 
+      (click)="isNative && openScanner()">{{ currentTranslations.scanButton }}
+    </button>
     <div *ngIf="scannedCode" class="scanned-code-section">
       <h2>Scanned Pet Code: <span>{{ scannedCode }}</span></h2>
       <button (click)="fetchPetInfo()" class="primary-button">{{ currentTranslations.searchButton }}</button>
@@ -65,39 +70,50 @@
   <!-- Pet Info Section -->
   <div class="pet-info" *ngIf="petInfo">
     <h2>{{ currentTranslations.petInfoTitle }}</h2>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.idNumber }}</span> {{ petInfo.zoekresultaat.Identificatienummer }}
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.name }}</span> {{ petInfo.zoekresultaat.Diernaam }}
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.breed }}</span> {{ petInfo.zoekresultaat.Diersoort }}
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.passportRegistered }}</span> {{ petInfo.zoekresultaat.Paspoort_geregistreerd }}
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.age }}</span> age
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.city }}</span> {{ petInfo.zoekresultaat.Woonplaats_houder }}
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.country }}</span> {{ petInfo.zoekresultaat.Land_houder }}
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.phoneNL }}</span> {{ petInfo.zoekresultaat.Telefoon_Nederland }}
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.phoneOutside }}</span> {{ petInfo.zoekresultaat.Telefoon_buitenland }}
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.missing }}</span> {{ petInfo.zoekresultaat.Vermist }}
-    </div>
-    <div class="info-item">
-      <span class="info-label">{{ currentTranslations.dead }}</span> {{ petInfo.zoekresultaat.Overleden }}
-    </div>
+    <table class="pet-info-table">
+      <tbody>
+        <tr>
+          <td>{{ currentTranslations.idNumber }}</td>
+          <td>{{ petInfo.zoekresultaat.Identificatienummer }}</td>
+        </tr>
+        <tr>
+          <td>{{ currentTranslations.name }}</td>
+          <td>{{ petInfo.zoekresultaat.Diernaam }}</td>
+        </tr>
+        <tr>
+          <td>{{ currentTranslations.breed }}</td>
+          <td>{{ petInfo.zoekresultaat.Diersoort }}</td>
+        </tr>
+        <tr>
+          <td>{{ currentTranslations.passportRegistered }}</td>
+          <td>{{ petInfo.zoekresultaat.Paspoort_geregistreerd }}</td>
+        </tr>
+        <tr>
+          <td>{{ currentTranslations.city }}</td>
+          <td>{{ petInfo.zoekresultaat.Woonplaats_houder }}</td>
+        </tr>
+        <tr>
+          <td>{{ currentTranslations.country }}</td>
+          <td>{{ petInfo.zoekresultaat.Land_houder }}</td>
+        </tr>
+        <tr>
+          <td>{{ currentTranslations.phoneNL }}</td>
+          <td>{{ petInfo.zoekresultaat.Telefoon_Nederland }}</td>
+        </tr>
+        <tr>
+          <td>{{ currentTranslations.phoneOutside }}</td>
+          <td>{{ petInfo.zoekresultaat.Telefoon_buitenland }}</td>
+        </tr>
+        <tr>
+          <td>{{ currentTranslations.missing }}</td>
+          <td>{{ petInfo.zoekresultaat.Vermist }}</td>
+        </tr>
+        <tr>
+          <td>{{ currentTranslations.dead }}</td>
+          <td>{{ petInfo.zoekresultaat.Overleden }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div *ngIf="message" class="message">
