@@ -150,23 +150,37 @@
   }
 
   .qr-section {
-      margin-bottom: 2rem;
-
-      .secondary-button {
-          padding: 0.8rem 1.5rem;
-          font-size: 1rem;
-          background-color: #2196f3;
-          color: #fff;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 0.3s;
-          margin-bottom: 1rem;
-
-          &:hover {
-              background-color: #1976d2;
-          }
+    margin-top: 1.5rem;
+    text-align: center;
+  
+    .secondary-button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      background-color: #2196f3;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background-color: #1976d2;
       }
+  
+      &.disabled {
+        background-color: #bdbdbd;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+  
+      &:disabled {
+        background-color: #bdbdbd;
+        color: #fff;
+        cursor: not-allowed;
+      }
+    }
+  
 
       .scanned-code-section {
           margin-top: 1rem;
@@ -224,32 +238,68 @@
   }
 
   .pet-info {
-      margin-top: 2rem;
-      padding: 1.5rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background-color: #f1f8e9;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  
+    h2 {
+      font-size: 1.8rem;
+      color: #4caf50;
+      margin-bottom: 1.5rem;
+      font-family: 'Poppins', sans-serif;
+    }
+  
+    .pet-info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
       border-radius: 10px;
-      background-color: #f1f8e9;
-      text-align: left;
-
-      h2 {
-          font-size: 1.5rem;
-          color: #4caf50;
-          margin-bottom: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+        tr {
+          th {
+            padding: 1rem;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+          }
+        }
       }
-
-      .info-item {
-          font-size: 1rem;
-          margin-bottom: 0.8rem;
-          display: flex;
-          align-items: center;
-
-          .info-label {
+  
+      tbody {
+        tr {
+          &:nth-child(even) {
+            background-color: #f9f9f9;
+          }
+  
+         
+  
+          &:hover {
+            background-color: #e8f5e9;
+          }
+  
+          td {
+            padding: 0.8rem;
+            text-align: left;
+            font-size: 1.05rem;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+  
+            &:first-child {
               font-weight: bold;
-              margin-right: 0.5rem;
-              color: #555;
+              color: #333;
+              text-transform: capitalize;
+            }
           }
       }
-  }
-}
+    }
+  }  
+} 
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -258,10 +308,26 @@
     width: 80%;
 }
   
-  .pet-finder-container {
-      padding: 1.5rem;
-      width: 80%;
+.pet-info-table {
+  font-size: 0.9rem;
+
+  thead {
+    tr {
+      th {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+      }
+    }
   }
+
+  tbody {
+    tr {
+      td {
+        padding: 0.6rem;
+      }
+    }
+  }
+}
 
   .language-selector {
     justify-content: center;
