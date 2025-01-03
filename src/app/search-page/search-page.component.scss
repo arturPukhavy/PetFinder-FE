@@ -276,8 +276,10 @@
           &:nth-child(even) {
             background-color: #f9f9f9;
           }
-  
-         
+
+          &:nth-child(odd) {
+            background-color: #eafad8;
+          }         
   
           &:hover {
             background-color: #e8f5e9;
@@ -286,7 +288,7 @@
           td {
             padding: 0.8rem;
             text-align: left;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             color: #555;
             border-bottom: 1px solid #ddd;
   
@@ -306,6 +308,12 @@
   .disclaimer {
     padding: 1.5rem;
     width: 80%;
+}
+
+.pet-finder-container {
+  padding: 1.5rem;
+  width: 80%;
+  size: 100px;
 }
   
 .pet-info-table {
