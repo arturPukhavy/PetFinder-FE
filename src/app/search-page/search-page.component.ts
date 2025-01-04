@@ -69,6 +69,19 @@ export class SearchPageComponent {
     this.currentTranslations = translations[this.selectedLanguage];
   }
 
+  getPetInfoTitle(): string {
+    if (!this.petInfo || !this.petInfo.zoekresultaat?.Diersoort) {
+      return this.currentTranslations.petInfoTitle; // Default title
+    }
+
+    const breed = this.petInfo.zoekresultaat.Diersoort.toLowerCase();
+    if (breed === 'kat') {
+      return this.currentTranslations.catInfoTitle;;
+    } else {
+      return this.currentTranslations.petInfoTitle;;
+    }
+  }
+
   openScanner() {
     // Implement QR scanner logic here
     // On successful scan, set the scannedCode
