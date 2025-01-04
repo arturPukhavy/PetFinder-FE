@@ -2,9 +2,9 @@
 
 PetFinder is a service for anyone looking to locate a pet using a chip number. This service is accessible on both desktop and mobile platforms, ensuring convenience and ease of use for all users. Whether you're a pet owner or someone who has found a lost pet, PetFinder makes it simple to find the pet's details quickly and efficiently with just the pet identification number.
 
-<img src="https://github.com/user-attachments/assets/ec81bd75-9ae7-4105-80a6-5a4124e71f88" alt="Screenshot" width="300"/>
+<img src="https://github.com/user-attachments/assets/348353c5-9b48-4ecb-a772-9101dae09444" alt="Screenshot" width="300" height="500"/>
+<img src="https://github.com/user-attachments/assets/0a646737-0798-4be1-87f1-e4e915880944" alt="Screenshot" width="300" height="500"/>
 
-The desktop version is hosted in Glitch-platform:
 * https://petfinder-app.glitch.me/
 
 ### Test data
