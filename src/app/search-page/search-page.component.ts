@@ -49,13 +49,13 @@ export class SearchPageComponent {
       error => {
         console.error('Error fetching pet info:', error);
         if (error.status === 400) {
-          this.message = error.error.message; 
+          this.message = error.error?.message; 
         } else if (error.status === 403) {
-          this.message = error.error.message || 'Access denied.'; 
+          this.message = error.error?.message || 'Access denied.'; 
         } else if (error.status === 404) {
-          this.message = error.error.message || 'Pet not found.';
+          this.message = error.error?.message || 'Pet not found.';
         } else if (error.status === 500) {
-          this.message = error.error.message || 'Server error occurred.';
+          this.message = error.error?.message || 'Server error occurred.';
         } else {
           this.message = 'An error occurred while fetching pet info.'; 
         }
