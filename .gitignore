@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+/android/app/src/main/assets
 
 # Node
 /node_modules
