@@ -42,7 +42,7 @@ jobs:
     - name: Run Glitch-git status
       id: git-status
       run: |
-        cd dist/figma
+        cd dist/pet-finder
         git clone https://${{ secrets.WEB_APP_TOKEN }}@api.glitch.com/git/petfinder-app
         rm petfinder-app/browser/*
         cp browser/* petfinder-app/browser
