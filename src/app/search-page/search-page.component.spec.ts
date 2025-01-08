@@ -47,10 +47,15 @@ class MockPetService {
   }
 }
 
-class MockNgxSpinnerService {
-  show() {}
-  hide() {}
-}
+// class MockNgxSpinnerService {
+//   show() {}
+//   hide() {}
+//   getSpinner(name: string) {
+//     return {
+//       observable: of(true), // Mock an observable to avoid runtime errors
+//     };
+//   }
+// }
 
 class MockPlatform {
   is() {
@@ -67,11 +72,10 @@ describe('SearchPageComponent', () => {
       imports: [SearchPageComponent],
       providers: [
         { provide: PetService, useClass: MockPetService },
-        { provide: NgxSpinnerService, useClass: MockNgxSpinnerService },
+        // { provide: NgxSpinnerService, useClass: MockNgxSpinnerService },
         { provide: Platform, useClass: MockPlatform }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchPageComponent);
     component = fixture.componentInstance;
