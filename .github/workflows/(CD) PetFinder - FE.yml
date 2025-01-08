@@ -48,7 +48,7 @@ jobs:
         cp browser/* petfinder-app/browser
         cd petfinder-app
         ls -l
-        touch readme.tmp
+        # touch readme.tmp
         pwd
         git status
         echo "git status next"
