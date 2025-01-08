@@ -63,7 +63,7 @@ jobs:
       if: steps.git-status.outputs.status != ''
       run: |
         echo "There are uncommitted changes. Running Deploy to glitch"
-        cd dist/figma/petfinder-app
+        cd dist/petfinder-app
         ls -l
         git add .
         echo "add done"
