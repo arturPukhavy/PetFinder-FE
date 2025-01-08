@@ -37,8 +37,8 @@ jobs:
         ng build --configuration=production
         ls -l
         echo "Build Completed"
-    # - name: Test
-    #   run: |       
-    #     ng test --watch=false --browsers=ChromeHeadless
-    #     echo "Test Completed"
-    #     ls -l
+    - name: Test
+      run: |       
+        ng test --watch=false --browsers=ChromeHeadless
+        echo "Test Completed"
+        ls -l
