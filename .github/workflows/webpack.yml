@@ -1,0 +1,44 @@
+name: (CI) PetFinder - FE
+
+on:
+  push:
+    branches: [ "feature/*" ]
+  pull_request:
+    branches: [ "main" ]  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install Angular CLI
+      run: | 
+        npm install -g @angular/cli
+        pwd
+        ls -l
+    - name: Install dependencies
+      run: | 
+        npm install
+        ls -l
+      
+    - name: Build
+      run: |        
+        ng build --configuration=production
+        ls -l
+        echo "Build Completed"
+    # - name: Test
+    #   run: |       
+    #     ng test --watch=false --browsers=ChromeHeadless
+    #     echo "Test Completed"
+    #     ls -l
