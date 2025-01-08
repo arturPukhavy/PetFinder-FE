@@ -1,0 +1,79 @@
+name: (CD) PetFinder - FE
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install Angular CLI
+      run: | 
+        npm install -g @angular/cli
+        pwd
+        ls -l
+    - name: Install dependencies
+      run: | 
+        npm install
+        ls -l
+      
+    - name: Build
+      run: |      
+        ng build --configuration=production
+        ls -l
+    - name: Configure Git
+      run: |
+        git config --global user.email "arturpuhice@gmail.com"
+        git config --global user.name "Artur"
+        
+    - name: Run Glitch-git status
+      id: git-status
+      run: |
+        cd dist/figma
+        git clone https://${{ secrets.WEB_APP_TOKEN }}@api.glitch.com/git/petfinder-app
+        rm petfinder-app/browser/*
+        cp browser/* petfinder-app/browser
+        cd petfinder-app
+        ls -l
+        touch readme.tmp
+        pwd
+        git status
+        echo "git status next"
+        git status --porcelain
+        {
+          echo 'STATUS<<EOF'
+          git status --porcelain
+          echo EOF
+        } >> $GITHUB_OUTPUT
+        
+    - name: Deploy to Glitch
+      if: steps.git-status.outputs.status != ''
+      run: |
+        echo "There are uncommitted changes. Running Deploy to glitch"
+        cd dist/figma/petfinder-app
+        ls -l
+        git add .
+        echo "add done"
+        git commit -m "deploy new version"
+        echo "commit done"
+        git push
+        echo "push done"
+        echo "Deploy to glitch complete"
+        
+    - name: Nothing to deploy
+      if: steps.git-status.outputs.status == ''
+      run: |
+        echo "No changes, there is nothing to deploy"  
