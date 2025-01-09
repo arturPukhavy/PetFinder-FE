@@ -38,6 +38,10 @@ jobs:
       run: |
         git config --global user.email "arturpuhice@gmail.com"
         git config --global user.name "Artur"
+        export GIT_TRACE_PACKET=1 
+        export GIT_TRACE=1
+        export GIT_CURL_VERBOSE=1
+        git config --global http.postBuffer 157286400
         
     - name: Run Glitch-git status
       id: git-status
