@@ -73,6 +73,8 @@ jobs:
         echo "add done"
         git commit -m "deploy new version"
         echo "commit done"
+        echo "--- Orgin: "
+        git remote -v
         git push
         echo "push done"
         echo "Deploy to glitch complete"
