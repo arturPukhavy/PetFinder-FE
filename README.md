@@ -2,6 +2,8 @@
 
 [![(CI) PetFinder - FE](https://github.com/arturPukhavy/PetFinder-FE/actions/workflows/(CI)%20PetFinder%20-%20FE.yml/badge.svg)](https://github.com/arturPukhavy/PetFinder-FE/actions/workflows/(CI)%20PetFinder%20-%20FE.yml)
 
+[![(CD) PetFinder - FE](https://github.com/arturPukhavy/PetFinder-FE/actions/workflows/(CD)%20PetFinder%20-%20FE.yml/badge.svg)](https://github.com/arturPukhavy/PetFinder-FE/actions/workflows/(CD)%20PetFinder%20-%20FE.yml)
+
 PetFinder is a service for anyone looking to locate a pet using a chip number. This service is accessible on both desktop and mobile platforms, ensuring convenience and ease of use for all users. Whether you're a pet owner or someone who has found a lost pet, PetFinder makes it simple to find the pet's details quickly and efficiently with just the pet identification number.
 
 <img src="https://github.com/user-attachments/assets/348353c5-9b48-4ecb-a772-9101dae09444" alt="Screenshot" width="300" height="500"/>
