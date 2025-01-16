@@ -213,28 +213,8 @@
       }
   }
 
-  .ngx-spinner {
-    background-color: rgba(0, 0, 0, 0.7) !important; // Dark background with transparency
-    border-radius: 10px; // Rounded corners
-  
-    // Customize the spinner types if needed
-    &.ball-scale-multiple {
-      .ball {
-        background-color: #ff4081; // Custom ball color
-      }
-    }
-  }
-  
-  // Optional: Customize the loading text style
-  .ngx-spinner p {
-    color: #ffffff; // White text color
-    font-size: 1.2rem; // Adjust font size
-    font-weight: bold; // Make text bold
-    position: fixed; // Fix the position of the spinner
-    top: 50%; // Center it vertically
-    left: 50%; // Center it horizontally
-    transform: translate(-50%, -50%); // Adjust position to truly center
-    z-index: 9999; // Ensure it stays above other elements
+  .table-wrapper {
+    margin: 0 auto; // Center the wrapper within the parent
   }
 
   .pet-info {
@@ -308,34 +288,23 @@
   .disclaimer {
     padding: 1.5rem;
     width: 80%;
-}
+  }
 
 .pet-finder-container {
   padding: 1.5rem;
   width: 80%;
   size: 100px;
-}
-  
-.pet-info-table {
-  font-size: 0.9rem;
 
-  thead {
-    tr {
-      th {
-        font-size: 0.85rem;
-        padding: 0.8rem;
+  .pet-info {  
+      tbody {
+        tr {
+          td {
+            padding: 0.7rem;           
+            font-size: 0.7rem; 
+          }
       }
     }
-  }
-
-  tbody {
-    tr {
-      td {
-        padding: 0.6rem;
-      }
-    }
-  }
-}
+  }  
 
   .language-selector {
     justify-content: center;
@@ -380,4 +349,5 @@
   .pet-info .info-item {
       font-size: 0.9rem;
   }
+}
 }
