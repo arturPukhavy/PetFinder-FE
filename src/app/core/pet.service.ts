@@ -20,13 +20,16 @@ import { CapacitorHttp, HttpResponse } from "@capacitor/core";
       const urlMob = `${this.apiUrlMob}/${code}`;
       const urlWeb = `${this.apiUrlWeb}/${code}`;
   
+      console.log('Artur, platform: ' + this.platform.platforms.length)
       if (this.platform.is('capacitor')) {
         // Native: Use Capacitor HTTP
+        console.log('Artur, capacitor version')
         return from(this.nativeGetRequest(urlMob)).pipe(
           catchError(this.handleError)
         );    
       } else {
         // Web: Use Angular HttpClient
+        console.log('Artur, web version')
         return this.http.get<PetResponse>(urlWeb).pipe(
           catchError(this.handleError)
         );
@@ -37,7 +40,7 @@ import { CapacitorHttp, HttpResponse } from "@capacitor/core";
       console.log("url = " + url)
       const options = {
         url: url,
-        headers: { 'Access-Control-Allow-Origin': '*' },
+        // headers: { 'Access-Control-Allow-Origin': '*' },
         params: { size: 'XL2' },
       };
     
