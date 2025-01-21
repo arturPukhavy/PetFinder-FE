@@ -11,31 +11,34 @@ import { CapacitorHttp, HttpResponse } from "@capacitor/core";
     providedIn: 'root'
   })
   export class PetService {
-    private apiUrl = 'https://petfinder-api.glitch.me/api/v1/barcode'; 
+    private apiUrlMob = 'https://petfinder-api.glitch.me/api/v1/barcode'; 
+    private apiUrlWeb = '/api/v1/barcode';
 
     constructor(private http: HttpClient, private platform: Platform) {}
   
     getPetInfo(code: string): Observable<PetResponse> {
-      const url = `${this.apiUrl}/${code}`;
+      const urlMob = `${this.apiUrlMob}/${code}`;
+      const urlWeb = `${this.apiUrlWeb}/${code}`;
   
-      if (true) {
+      if (this.platform.is('capacitor')) {
         // Native: Use Capacitor HTTP
-        return from(this.nativeGetRequest(url)).pipe(
+        return from(this.nativeGetRequest(urlMob)).pipe(
           catchError(this.handleError)
-        );
+        );    
       } else {
         // Web: Use Angular HttpClient
-        return this.http.get<PetResponse>(url).pipe(
+        return this.http.get<PetResponse>(urlWeb).pipe(
           catchError(this.handleError)
         );
       }
     }
   
     private async nativeGetRequest(url: string): Promise<PetResponse> {
+      console.log("url = " + url)
       const options = {
         url: url,
-        headers: { 'X-Fake-Header': 'Fake-Value' },
-        params: { size: 'XL' },
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        params: { size: 'XL2' },
       };
     
       const response: HttpResponse = await CapacitorHttp.get(options);
