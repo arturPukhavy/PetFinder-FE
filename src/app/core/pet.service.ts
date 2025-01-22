@@ -2,35 +2,39 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, from, map, Observable, throwError } from "rxjs";
 import { PetResponse } from "./pet.model";
-import { Http } from "@capacitor/http";
 import { Platform } from "@ionic/angular";
 import { CapacitorHttp, HttpResponse } from "@capacitor/core";
+import { environment } from "../environments/environment";
 
 
 @Injectable({
     providedIn: 'root'
   })
   export class PetService {
-    private apiUrlMob = 'https://petfinder-api.glitch.me/api/v1/barcode'; 
-    private apiUrlWeb = '/api/v1/barcode';
+    private apiBaseUrl: string;
 
-    constructor(private http: HttpClient, private platform: Platform) {}
+    constructor(private http: HttpClient, private platform: Platform) {
+      if (this.platform.is('capacitor')) {
+        this.apiBaseUrl = environment.apiUrlMob;
+      } else {
+        this.apiBaseUrl = environment.apiUrlWeb;
+      }
+    }
   
     getPetInfo(code: string): Observable<PetResponse> {
-      const urlMob = `${this.apiUrlMob}/${code}`;
-      const urlWeb = `${this.apiUrlWeb}/${code}`;
+      const url = `${this.apiBaseUrl}/${code}`;
   
       console.log('Artur, platform: ' + this.platform.platforms.length)
       if (this.platform.is('capacitor')) {
         // Native: Use Capacitor HTTP
         console.log('Artur, capacitor version')
-        return from(this.nativeGetRequest(urlMob)).pipe(
+        return from(this.nativeGetRequest(url)).pipe(
           catchError(this.handleError)
         );    
       } else {
         // Web: Use Angular HttpClient
         console.log('Artur, web version')
-        return this.http.get<PetResponse>(urlWeb).pipe(
+        return this.http.get<PetResponse>(url).pipe(
           catchError(this.handleError)
         );
       }
@@ -41,14 +45,10 @@ import { CapacitorHttp, HttpResponse } from "@capacitor/core";
       const options = {
         url: url,
         // headers: { 'Access-Control-Allow-Origin': '*' },
-        params: { size: 'XL2' },
+        // params: { size: 'XL2' },
       };
     
       const response: HttpResponse = await CapacitorHttp.get(options);
-      // const response = await Http.request({
-      //   method: 'GET',
-      //   url: url
-      // });
   
       if (response.status === 200) {
         return response.data as PetResponse;

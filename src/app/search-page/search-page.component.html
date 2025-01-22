@@ -7,7 +7,7 @@
   <p>{{currentTranslations.discGit}} <a href="https://github.com/arturPukhavy/PetFinder-FE" target="_blank">GitHub Repository</a></p>
 </div>
 
-<div class="pet-finder-container">
+<div class="pet-finder-container" *ngIf="!isScanning">
   <div class="language-selector">
     <label for="language-select" class="language-label">🌐:</label>
     <select
@@ -51,9 +51,9 @@
       class="secondary-button" 
       [disabled]="!isNative"
       [class.disabled]="!isNative" 
-      (click)="isNative && openScanner()">{{ currentTranslations.scanButton }}
+      (click)="openScanner()">{{ currentTranslations.scanButton }}
     </button>
-    <div *ngIf="scannedCode" class="scanned-code-section">
+    <div *ngIf="scannedCode" class="scanned-code-section"> 
       <h2>Scanned Pet Code: <span>{{ scannedCode }}</span></h2>
       <button (click)="fetchPetInfo()" class="primary-button">{{ currentTranslations.searchButton }}</button>
     </div>
