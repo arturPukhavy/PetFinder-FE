@@ -59,7 +59,7 @@ describe('SearchPageComponent', () => {
 
   it('should initialize with default values', () => {
     expect(component.petCode).toBe('');
-    expect(component.scannedCode).toBeNull();
+    expect(component.scannedCode).toBe('');
     expect(component.petInfo).toBeNull();
     expect(component.message).toBeNull();
     expect(component.selectedLanguage).toBe('en');
