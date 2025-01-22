@@ -6,6 +6,7 @@ import { PetResponse } from '../core/pet.model';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { IonicModule, Platform } from '@ionic/angular';
 import { translations } from '../core/translations';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 type Language = 'en' | 'nl';
 
@@ -21,12 +22,13 @@ type Language = 'en' | 'nl';
 
 export class SearchPageComponent {
   petCode: string = '';
-  scannedCode: string | null = null;
+  scannedCode: string = '';
   petInfo: PetResponse | null = null;
   message: string | null = null
   isNative: boolean;
   selectedLanguage: Language = 'en';
   currentTranslations = translations.en;
+  isScanning: boolean = false;
 
   constructor(private petService: PetService, private spinner: NgxSpinnerService, private platform: Platform) {
     this.isNative = this.platform.is('capacitor');
@@ -82,10 +84,45 @@ export class SearchPageComponent {
     }
   }
 
-  openScanner() {
-    // Implement QR scanner logic here
-    // On successful scan, set the scannedCode
-    // this.scannedCode = scannedCodeFromScanner;
+  async openScanner() {
+    if (!this.isNative) {
+      this.message = 'Scanning is only available on mobile.';
+      return;
+    }
+  
+    try {
+      // Check and request camera permission
+      const status = await BarcodeScanner.checkPermission({ force: true });
+      if (!status.granted) {
+        this.message = 'Camera access denied.';
+        return;
+      }
+
+      this.isScanning = true;
+  
+      // Start the scanner and wait for the result
+      const scanResult = await BarcodeScanner.startScan(); // This handles the scanning process
+  
+      if (scanResult.hasContent) {
+        // If the scanner successfully returns content
+        this.scannedCode = scanResult.content; // The scanned code (e.g., a number or text)
+        console.log('Scanned Code:', this.scannedCode);
+  
+        // Automatically fetch pet info if the code is valid
+        this.petCode = this.scannedCode.trim();
+        this.fetchPetInfo();
+      } else {
+        // If no content is found, show an error
+        this.message = 'No code was found. Please try again.';
+      }
+    } catch (error) {
+      console.error('Error during scanning:', error);
+      this.message = 'An error occurred while scanning.';
+    } finally {
+      // Stop the scanner if it’s still running
+      BarcodeScanner.stopScan();
+      this.isScanning = false;
+    }
   }
 
 }
