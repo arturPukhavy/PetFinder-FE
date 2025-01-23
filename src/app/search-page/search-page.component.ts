@@ -7,6 +7,8 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { IonicModule, Platform } from '@ionic/angular';
 import { translations } from '../core/translations';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import Tesseract from 'tesseract.js';
 
 type Language = 'en' | 'nl';
 
@@ -29,6 +31,7 @@ export class SearchPageComponent {
   selectedLanguage: Language = 'en';
   currentTranslations = translations.en;
   isScanning: boolean = false;
+  scanResults: boolean = false;
 
   constructor(private petService: PetService, private spinner: NgxSpinnerService, private platform: Platform) {
     this.isNative = this.platform.is('capacitor');
@@ -92,6 +95,7 @@ export class SearchPageComponent {
   
     try {
       // Check and request camera permission
+      // Step 1: Try scanning a barcode
       const status = await BarcodeScanner.checkPermission({ force: true });
       if (!status.granted) {
         this.message = 'Camera access denied.';
@@ -111,16 +115,46 @@ export class SearchPageComponent {
         // Automatically fetch pet info if the code is valid
         this.petCode = this.scannedCode.trim();
         this.fetchPetInfo();
+        return;
+      } 
+      
+      // Step 2: If no barcode was found, fallback to OCR
+    console.log('No barcode detected. Switching to OCR...');
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl, // Use base64 image
+    });
+
+    if (image && image.dataUrl) {
+      this.spinner.show();
+      this.message = 'Processing image...';
+
+      const result = await Tesseract.recognize(image.dataUrl, 'digits', {
+        logger: (info) => console.log(info), // OCR processing
+      });
+
+      const scannedText = result.data.text.trim(); // Extract text from the image
+      console.log('Scanned Text:', scannedText);
+
+      // Validate if the detected text is numeric
+      if (/^\d+$/.test(scannedText)) {
+        this.scannedCode = scannedText;
+        this.petCode = this.scannedCode;
+        this.fetchPetInfo();
       } else {
-        // If no content is found, show an error
-        this.message = 'No code was found. Please try again.';
+        this.message = 'No valid number was detected. Please try again.';
       }
+    } else {
+      this.message = 'Image capture failed.';
+    }
     } catch (error) {
       console.error('Error during scanning:', error);
       this.message = 'An error occurred while scanning.';
     } finally {
       // Stop the scanner if it’s still running
       BarcodeScanner.stopScan();
+      this.spinner.hide();
       this.isScanning = false;
     }
   }
