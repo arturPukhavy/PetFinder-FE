@@ -102,27 +102,27 @@ export class SearchPageComponent {
     try {
       // Check and request camera permission
       // Step 1: Try scanning a barcode
-      // const status = await BarcodeScanner.checkPermission({ force: true });
-      // if (!status.granted) {
-      //   this.message = 'Camera access denied.';
-      //   return;
-      // }
+      const status = await BarcodeScanner.checkPermission({ force: true });
+      if (!status.granted) {
+        this.message = 'Camera access denied.';
+        return;
+      }
 
-      // this.isScanning = true;
+      this.isScanning = true;
   
-      // // Start the scanner and wait for the result
-      // const scanResult = await BarcodeScanner.startScan(); // This handles the scanning process
+      // Start the scanner and wait for the result
+      const scanResult = await BarcodeScanner.startScan(); // This handles the scanning process
   
-      // if (scanResult.hasContent) {
-      //   // If the scanner successfully returns content
-      //   this.scannedCode = scanResult.content; // The scanned code (e.g., a number or text)
-      //   console.log('Scanned Code:', this.scannedCode);
+      if (scanResult.hasContent) {
+        // If the scanner successfully returns content
+        this.scannedCode = scanResult.content; // The scanned code (e.g., a number or text)
+        console.log('Scanned Code:', this.scannedCode);
   
-      //   // Automatically fetch pet info if the code is valid
-      //   this.petCode = this.scannedCode.trim();
-      //   this.fetchPetInfo();
-      //   return;
-      // } 
+        // Automatically fetch pet info if the code is valid
+        this.petCode = this.scannedCode.trim();
+        this.fetchPetInfo();
+        return;
+      } 
       
       // Step 2: If no barcode was found, fallback to OCR
     console.log('Artur, No barcode detected. Switching to OCR...');
