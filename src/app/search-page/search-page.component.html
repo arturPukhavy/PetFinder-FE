@@ -90,7 +90,9 @@
         </tr>
         <tr>
           <td>{{ currentTranslations.city }}</td>
-          <td>{{ petInfo.zoekresultaat.Woonplaats_houder }}</td>
+          <td (click)="openMap(petInfo.zoekresultaat.Woonplaats_houder)" style="cursor: pointer; color: blue; text-decoration: underline;">
+            {{ petInfo.zoekresultaat.Woonplaats_houder }}
+          </td>
         </tr>
         <tr>
           <td>{{ currentTranslations.country }}</td>

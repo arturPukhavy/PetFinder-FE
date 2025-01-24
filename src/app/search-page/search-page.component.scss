@@ -301,7 +301,7 @@
         tr {
           td {
             padding: 0.7rem;           
-            font-size: 0.7rem; 
+            font-size: 0.9rem; 
           }
       }
     }
@@ -351,4 +351,73 @@
       font-size: 0.9rem;
   }
 }
+}
+
+@media (prefers-color-scheme: dark) {
+  .disclaimer {
+    background-color: #1e1e2f; // Dark background
+    color: #eaeaea; // Light text
+    border: 1px solid #4b4b75; // Subtle border
+  }
+
+  .pet-finder-container {
+    background: linear-gradient(135deg, #2a2a3b, #3b3b4e); // Dark gradient background
+    color: #eaeaea; // Light text
+
+    .title {
+      color: #4caf50; // Bright color for title
+    }
+
+    input, select {
+      background-color: #3b3b4e; // Darker background for inputs
+      color: #fff; // Light text
+      border: 1px solid #777; // Light border
+
+      &:focus {
+        border-color: #4caf50; // Highlight border on focus
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); // Subtle glow effect
+      }
+    }
+
+    .primary-button, .secondary-button {
+      background-color: #4caf50; // Bright button color
+      color: #fff; // White button text
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #45a049; // Darker shade on hover
+      }
+    }
+
+    .pet-info {
+      background-color: #2a2a3b; // Dark background for pet info
+      padding: 1.5rem;
+      border-radius: 10px;
+
+      h2 {
+        color: #4caf50; // Bright title color
+      }
+
+      .pet-info-table {
+        tbody {
+          tr {
+            &:nth-child(even) {
+              background-color: #3b3b4e; // Darker for even rows
+            }
+            &:nth-child(odd) {
+              background-color: #2b2b3e; // A bit lighter for odd rows
+            }
+
+            td {
+              color: #eaeaea; // Light text for table cells
+            }
+          }
+        }
+      }
+    }
+
+    .message {
+      color: #ffcc00; // Warning messages in yellow
+    }
+  }
 }

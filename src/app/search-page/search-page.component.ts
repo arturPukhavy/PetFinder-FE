@@ -70,6 +70,11 @@ export class SearchPageComponent {
     );
   }
 
+  openMap(city: string) {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(city)}`;
+    window.open(url, '_blank');
+  }
+
   changeLanguage() {
     this.currentTranslations = translations[this.selectedLanguage];
   }
@@ -88,6 +93,7 @@ export class SearchPageComponent {
   }
 
   async openScanner() {
+    console.log('Artur, open scanner...');
     if (!this.isNative) {
       this.message = 'Scanning is only available on mobile.';
       return;
@@ -119,7 +125,7 @@ export class SearchPageComponent {
       } 
       
       // Step 2: If no barcode was found, fallback to OCR
-    console.log('No barcode detected. Switching to OCR...');
+    console.log('Artur, No barcode detected. Switching to OCR...');
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
@@ -135,7 +141,7 @@ export class SearchPageComponent {
       });
 
       const scannedText = result.data.text.trim(); // Extract text from the image
-      console.log('Scanned Text:', scannedText);
+      console.log('Artur, Scanned Text:', scannedText);
 
       // Validate if the detected text is numeric
       if (/^\d+$/.test(scannedText)) {
