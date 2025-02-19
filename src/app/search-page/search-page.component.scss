@@ -65,7 +65,7 @@
       padding: 0.5rem;
       font-size: 1rem;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 20px;
       background-color: #fff;
       color: #333;
       cursor: pointer;
@@ -110,7 +110,7 @@
               flex: 1;
               padding: 0.8rem;
               border: 2px solid #ddd;
-              border-radius: 8px;
+              border-radius: 20px;
               font-size: 1rem;
               margin-right: 0.5rem;
               transition: border-color 0.3s;
@@ -126,18 +126,28 @@
           }
 
           .primary-button {
-              padding: 0.8rem 1.5rem;
-              font-size: 1rem;
-              background-color: #4caf50;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #4caf50, #81c784); /* Gradient background */
+            color: #fff;
+            border: none;
+            border-radius: 20px; /* Rounded corners */
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth transition for hover effects */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+          
+            &:hover {
+              background: linear-gradient(135deg, #388e3c, #66bb6a); /* Darker gradient on hover */
+              transform: translateY(-2px); /* Slight lift effect */
+              box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+            }
+          
+            &:disabled {
+              background: #bdbdbd; /* Disabled background */
               color: #fff;
-              border: none;
-              border-radius: 8px;
-              cursor: pointer;
-              transition: background-color 0.3s;
-
-              &:hover {
-                  background-color: #43a047;
-              }
+              cursor: not-allowed;
+              box-shadow: none; /* No shadow when disabled */
+            }
           }
       }
 
@@ -159,7 +169,7 @@
       background-color: #2196f3;
       color: #fff;
       border: none;
-      border-radius: 8px;
+      border-radius: 20px;
       cursor: pointer;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
@@ -203,7 +213,7 @@
               background-color: #4caf50;
               color: white;
               border: none;
-              border-radius: 8px;
+              border-radius: 20px;
               cursor: pointer;
               
 
@@ -333,7 +343,7 @@
       }
 
       .validation-message {
-        order: 2;
+        order: 1;
         width: 80%;
         text-align: left;
         margin-bottom: 0.5rem;
