@@ -311,7 +311,7 @@
         tr {
           td {
             padding: 0.7rem;           
-            font-size: 0.9rem; 
+            font-size: 0.85rem; 
           }
       }
     }
@@ -331,15 +331,19 @@
       font-size: 2rem;
   }
 
-  .input-section {
-    .input-wrapper {
+  .input-section { 
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      input {
+      .input-wrapper {
+        display: contents;
+      }
+      
+      #pet-code-input {
+        order: 0;
         width: 80%;
-        margin-bottom: 0.5rem; 
+        margin-bottom: 0.5rem;
       }
 
       .validation-message {
@@ -350,11 +354,9 @@
       }
 
       .primary-button {
-        order: 3; 
+        order: 2; 
         width: 80%;
-      }
-    }
-  
+  } 
   }
 
   .qr-section .secondary-button {
@@ -377,13 +379,13 @@
 
 @media (prefers-color-scheme: dark) {
   .disclaimer {
-    background-color: #1e1e2f; // Dark background
+    background-color:#b1f0fe;
     color: #eaeaea; // Light text
     border: 1px solid #4b4b75; // Subtle border
   }
 
   .pet-finder-container {
-    background: linear-gradient(135deg, #2a2a3b, #3b3b4e); // Dark gradient background
+    background: linear-gradient(135deg, #ffffff, #eafaf1);
     color: #eaeaea; // Light text
 
     .title {
@@ -391,7 +393,7 @@
     }
 
     input, select {
-      background-color: #3b3b4e; // Darker background for inputs
+      background-color:  #8989ce; // Darker background for inputs
       color: #fff; // Light text
       border: 1px solid #777; // Light border
 
@@ -412,7 +414,7 @@
     }
 
     .pet-info {
-      background-color: #2a2a3b; // Dark background for pet info
+      background-color:  #8989ce; // Dark background for pet info
       padding: 1.5rem;
       border-radius: 10px;
 
@@ -424,10 +426,10 @@
         tbody {
           tr {
             &:nth-child(even) {
-              background-color: #3b3b4e; // Darker for even rows
+              background-color: #7575ae; // Darker for even rows
             }
             &:nth-child(odd) {
-              background-color: #2b2b3e; // A bit lighter for odd rows
+              background-color: #3d3d68; // A bit lighter for odd rows
             }
 
             td {
